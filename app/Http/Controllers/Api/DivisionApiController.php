@@ -57,6 +57,7 @@ class DivisionApiController extends Controller
 	public function show(Division $division)
 	{
 		$division = $this->divisionServices->findById($division->id);
+
 		return Response::json([
 			'message' => 'Division retrieved successfully',
 			'data' => $division
@@ -89,11 +90,10 @@ class DivisionApiController extends Controller
 	 */
 	public function destroy(Division $division)
 	{
-		$division = $this->divisionServices->destroy($division->id);
+		$this->divisionServices->destroy($division->id);
 
 		return Response::json([
 			'message' => 'Division deleted successfully',
-			'data' => $division
 		], 200);
 	}
 }

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Repositories\Generation;
+namespace App\Services\Generation;
 
 use App\Models\Generation;
 use Illuminate\Database\Eloquent\Collection;
-use LaravelEasyRepository\Repository;
+use LaravelEasyRepository\BaseService;
 
-interface GenerationRepository extends Repository
+interface GenerationService extends BaseService
 {
 	public function all(): Collection;
 	public function findById(int $id): Generation;

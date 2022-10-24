@@ -19,11 +19,6 @@ class DivisionTest extends TestCase
 		'Webmaster'
 	];
 
-	/**
-	 * A basic feature test example.
-	 *
-	 * @return void
-	 */
 	public function test_get_all_divisions()
 	{
 		foreach ($this->collections as $collection) {
@@ -79,7 +74,7 @@ class DivisionTest extends TestCase
 		]);
 		$id = $division->json('data.id');
 
-		$response = $this->putJson('/api/divisions/' . $id, [
+		$response = $this->patchJson('/api/divisions/' . $id, [
 			'title' => 'Videographer'
 		]);
 
