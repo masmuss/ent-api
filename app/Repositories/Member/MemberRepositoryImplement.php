@@ -4,20 +4,66 @@ namespace App\Repositories\Member;
 
 use LaravelEasyRepository\Implementations\Eloquent;
 use App\Models\Member;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Auth;
 
-class MemberRepositoryImplement extends Eloquent implements MemberRepository{
+class MemberRepositoryImplement extends Eloquent implements MemberRepository
+{
 
-    /**
-    * Model class to be used in this repository for the common methods inside Eloquent
-    * Don't remove or change $this->model variable name
-    * @property Model|mixed $model;
-    */
-    protected $model;
+	/**
+	 * Model class to be used in this repository for the common methods inside Eloquent
+	 * Don't remove or change $this->model variable name
+	 * @property Model|mixed $model;
+	 */
+	protected $model;
 
-    public function __construct(Member $model)
-    {
-        $this->model = $model;
-    }
+	public function __construct(Member $model)
+	{
+		$this->model = $model;
+	}
 
-    // Write something awesome :)
+	public function all(): Collection
+	{
+		return $this->model->all();
+	}
+
+	public function findById(int $id): Member
+	{
+		return $this->model->findOrFail($id);
+	}
+
+	public function create($payload): Member
+	{
+		return $this->model->create([
+			'user_id' => Auth::id(),
+			'generation_id' => $payload['generation_id'],
+			'department_id' => $payload['department_id'],
+			'division_id' => $payload['division_id'],
+			'name' => $payload['name'],
+			'nrp' => $payload['nrp'],
+			'email' => $payload['email'],
+			'phone_number' => $payload['phone_number']
+		]);
+	}
+
+	public function update($id, $payload): Member
+	{
+		$member = $this->findById($id);
+		$member->update([
+			'generation_id' => $payload['generation_id'],
+			'department_id' => $payload['department_id'],
+			'division_id' => $payload['division_id'],
+			'name' => $payload['name'],
+			'nrp' => $payload['nrp'],
+			'email' => $payload['email'],
+			'phone_number' => $payload['phone_number']
+		]);
+		return $member;
+	}
+
+	public function destroy($id): bool
+	{
+		$member = $this->findById($id);
+		return $member->delete();
+	}
 }

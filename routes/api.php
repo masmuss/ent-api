@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Api\Auth\LoginController;
+use App\Http\Controllers\Api\Auth\RegisterController;
 use App\Http\Controllers\Api\DepartmentApiController;
 use App\Http\Controllers\Api\DivisionApiController;
 use App\Http\Controllers\Api\GenerationApiController;
@@ -22,7 +24,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 	return $request->user();
 });
 
-Route::resource('departments', DepartmentApiController::class);
-Route::resource('generations', GenerationApiController::class);
-Route::resource('divisions', DivisionApiController::class);
-Route::resource('members', MemberApiController::class);
+Route::post('auth/register', RegisterController::class);
+Route::post('auth/login', LoginController::class);
+
+Route::apiResources([
+	'departments' => DepartmentApiController::class,
+	'generations' => GenerationApiController::class,
+	'divisions' => DivisionApiController::class,
+	'members' => MemberApiController::class,
+]);

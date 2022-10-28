@@ -16,3 +16,4 @@ yarn-error.log
 /.vscode
 zsh.exe.stackdump
 /app/Services/Api
+request.rest
