@@ -5,10 +5,10 @@ use App\Http\Controllers\Api\Auth\LogoutController;
 use App\Http\Controllers\Api\Auth\RegisterController;
 use App\Http\Controllers\Api\DepartmentApiController;
 use App\Http\Controllers\Api\DivisionApiController;
+use App\Http\Controllers\Api\FinanceApiController;
 use App\Http\Controllers\Api\GenerationApiController;
 use App\Http\Controllers\Api\MemberApiController;
 use App\Http\Controllers\Api\UserApiController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,8 +32,12 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 Route::apiResources([
+	// collections
 	'departments' => DepartmentApiController::class,
 	'generations' => GenerationApiController::class,
 	'divisions' => DivisionApiController::class,
 	'members' => MemberApiController::class,
+
+	// finance
+	'finance' => FinanceApiController::class,
 ]);

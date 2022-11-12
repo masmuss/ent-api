@@ -19,7 +19,8 @@ class DatabaseSeeder extends Seeder
 			GenerationSeeder::class,
 			DivisionSeeder::class,
 			MemberSeeder::class,
-			UserSeeder::class
+			UserSeeder::class,
+			FinanceSeeder::class,
 		]);
 	}
 }
