@@ -25,7 +25,8 @@ class DivisionSeeder extends Seeder
 
 		foreach ($divisions as $division) {
 			Division::create([
-				'title' => $division
+				'title' => $division,
+				'created_at' => fake()->dateTimeBetween('-5 years', 'now'),
 			]);
 		}
 	}

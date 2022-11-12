@@ -5,7 +5,6 @@ namespace App\Repositories\Member;
 use LaravelEasyRepository\Implementations\Eloquent;
 use App\Models\Member;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Facades\Auth;
 
 class MemberRepositoryImplement extends Eloquent implements MemberRepository
 {
@@ -24,10 +23,10 @@ class MemberRepositoryImplement extends Eloquent implements MemberRepository
 
 	public function all(): Collection
 	{
-		return $this->model->all();
+		return $this->model->with(['division', 'generation'])->latest()->get();
 	}
 
-	public function findById(int $id): Member
+	public function findById($id): Member
 	{
 		return $this->model->findOrFail($id);
 	}
@@ -35,7 +34,7 @@ class MemberRepositoryImplement extends Eloquent implements MemberRepository
 	public function create($payload): Member
 	{
 		return $this->model->create([
-			'user_id' => Auth::id(),
+			// 'user_id' => $payload['user_id'],
 			'generation_id' => $payload['generation_id'],
 			'department_id' => $payload['department_id'],
 			'division_id' => $payload['division_id'],

@@ -8,6 +8,7 @@ use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Response;
 
 class RegisterController extends Controller
 {
@@ -33,8 +34,11 @@ class RegisterController extends Controller
 
 		$token = $user->createToken('myAppToken');
 
-		return (new UserResource($user))->additional([
-			'token' => $token->plainTextToken,
-		]);
+		return Response::json([
+			'message' => 'User created successfully',
+			'access_token' => $token->plainTextToken,
+			'token_type' => 'Bearer',
+			'user' => new UserResource($user)
+		], 201);
 	}
 }

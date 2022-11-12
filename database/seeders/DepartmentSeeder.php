@@ -15,7 +15,7 @@ class DepartmentSeeder extends Seeder
 	 */
 	public function run()
 	{
-		$departments = ['D3', 'Sarjana Terapan'];
+		$departments = ['D3', 'D4'];
 		foreach ($departments as $department) {
 			Department::create([
 				'level' => $department

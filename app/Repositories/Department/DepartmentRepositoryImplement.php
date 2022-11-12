@@ -22,7 +22,7 @@ class DepartmentRepositoryImplement extends Eloquent implements DepartmentReposi
 
 	public function all(): Collection
 	{
-		return $this->model->all();
+		return $this->model->latest()->with('members')->get();
 	}
 
 	public function findById(int $id): Department

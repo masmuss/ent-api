@@ -23,7 +23,7 @@ class DivisionRepositoryImplement extends Eloquent implements DivisionRepository
 
 	public function all(): Collection
 	{
-		return $this->model->all();
+		return $this->model->with('members')->get();
 	}
 
 	public function findById(int $id): Division
