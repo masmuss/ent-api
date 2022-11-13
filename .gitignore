@@ -15,5 +15,4 @@ yarn-error.log
 /.idea
 /.vscode
 zsh.exe.stackdump
-/app/Services/Api
 request.rest
