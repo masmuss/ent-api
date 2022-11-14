@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
+use App\Models\Log as LogModel;
 
 class LogRequests
 {
@@ -32,30 +32,13 @@ class LogRequests
 	{
 		$request->end = microtime(true);
 
-		$this->log($request, $response);
-	}
-
-	/**
-	 * Log the request and response.
-	 *
-	 * @param  \Illuminate\Http\Request  $request
-	 * @param  \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse  $response
-	 * @return void
-	 */
-	protected function log(Request $request, $response)
-	{
-		$method = $request->getMethod();
-		$uri = $request->fullUrl();
-		$ip = $request->getClientIp();
-		$agent = $request->userAgent();
-		$duration = $request->end - $request->start;
-		$statusCode = $response->getStatusCode();
-
-		Log::info(
-			"{$ip} : {$method} @{$uri} {$agent} {$duration}\n" .
-				"{$statusCode}\n" .
-				"Request : {[$request->all()]}\n" .
-				"Response : {$response->getContent()}"
-		);
+		LogModel::create([
+			'ip' => $request->ip(),
+			'method' => $request->method(),
+			'uri' => $request->path(),
+			'user_agent' => $request->userAgent(),
+			'duration' => $request->end - $request->start,
+			'status_code' => $response->getStatusCode(),
+		]);
 	}
 }

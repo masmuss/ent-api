@@ -8,7 +8,7 @@ use LaravelEasyRepository\BaseService;
 
 interface FinanceService extends BaseService
 {
-	public function getAll();
+	public function getAll(): Collection;
 	public function create($payload): Finance;
 	public function update($id, $payload): Finance;
 	public function delete($id): bool;

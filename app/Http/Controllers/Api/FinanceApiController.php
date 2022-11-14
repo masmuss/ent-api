@@ -19,7 +19,6 @@ class FinanceApiController extends Controller
 
 	/**
 	 * Display a listing of the resource.
-	 * @param \App\Services\Api\FinanceApiServices  $financeApiServices
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index()

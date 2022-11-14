@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
 			MemberSeeder::class,
 			UserSeeder::class,
 			FinanceSeeder::class,
+			MailingSeeder::class,
 		]);
 	}
 }
