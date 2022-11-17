@@ -20,4 +20,14 @@ class Member extends Model
 		'email',
 		'phone_number',
 	];
+
+	public function division()
+	{
+		return $this->belongsTo(Division::class, 'division_id', 'id');
+	}
+
+	public function generation()
+	{
+		return $this->belongsTo(Generation::class, 'generation_id', 'id');
+	}
 }
