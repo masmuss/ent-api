@@ -9,6 +9,7 @@ use LaravelEasyRepository\Repository;
 interface FinanceRepository extends Repository
 {
 	public function all(): Collection;
+	public function getReport(int $month, int $year): Collection;
 	public function getBalance();
 	public function create($payload) : Finance;
 	public function update($id, $payload) : Finance;

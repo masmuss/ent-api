@@ -31,6 +31,16 @@ class FinanceApiController extends Controller
 		], 200);
 	}
 
+	public function getReport($month = 0, $year)
+	{
+		$finances = $this->financeServices->getReport($month, $year);
+
+		return Response::json([
+			'message' => 'success',
+			'data' => $finances
+		], 200);
+	}
+
 	/**
 	 * Store a newly created resource in storage.
 	 *

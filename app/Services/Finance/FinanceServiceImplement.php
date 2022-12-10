@@ -27,6 +27,11 @@ class FinanceServiceImplement extends Service implements FinanceService
 		return $this->mainRepository->all();
 	}
 
+	public function getReport($month, $year): Collection
+	{
+		return $this->mainRepository->getReport($month, $year);
+	}
+
 	public function create($payload): Finance
 	{
 		return $this->mainRepository->create($payload);

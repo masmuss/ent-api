@@ -27,6 +27,13 @@ class FinanceRepositoryImplement extends Eloquent implements FinanceRepository
 		return $this->model->latest()->get();
 	}
 
+	public function getReport($month = 0, $year): Collection
+	{
+		return ($month === 0) ?
+			$this->model->whereYear('date', $year)->latest()->get() :
+			$this->model->whereMonth('date', $month)->whereYear('date', $year)->latest()->get();
+	}
+
 	public function getBalance()
 	{
 		return $this->model->latest()->first()->balance ?? 0;

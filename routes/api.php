@@ -1,15 +1,7 @@
 <?php
 
-use App\Http\Controllers\Api\Auth\LoginController;
-use App\Http\Controllers\Api\Auth\LogoutController;
-use App\Http\Controllers\Api\Auth\RegisterController;
-use App\Http\Controllers\Api\DepartmentApiController;
-use App\Http\Controllers\Api\DivisionApiController;
-use App\Http\Controllers\Api\FinanceApiController;
-use App\Http\Controllers\Api\GenerationApiController;
-use App\Http\Controllers\Api\MailingApiController;
-use App\Http\Controllers\Api\MemberApiController;
-use App\Http\Controllers\Api\UserApiController;
+use App\Http\Controllers\Api\Auth\{LoginController, LogoutController, RegisterController};
+use App\Http\Controllers\Api\{DepartmentApiController, DivisionApiController, FinanceApiController, GenerationApiController, MailingApiController, MemberApiController, UserApiController};
 use App\Http\Controllers\LogController;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
@@ -47,5 +39,7 @@ Route::apiResources([
 	// mailing
 	'mailings' => MailingApiController::class,
 ]);
+
+Route::get('finance/report/{month}/{year}', [FinanceApiController::class, 'getReport']);
 
 Route::get('/logs', [LogController::class, 'index']);
